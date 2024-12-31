@@ -32,7 +32,7 @@
         $numero=rand(1,1000);
         mysqli_query($conexao,"insert into endereço (rua,numero,bairro,pessoa) values ('$rua','$numero','$bairro',$id);");
     }
-    for($i=40;$i<70;$i++){
+    for($i=1;$i<31;$i++){
         for($j=0;$j<rand(0,3);$j++){
             $ddd=rand(0,9)*10+rand(0,9);
             $tipo=rand(0,1)?"F":"C";
