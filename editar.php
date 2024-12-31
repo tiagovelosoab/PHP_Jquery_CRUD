@@ -34,7 +34,8 @@ $id = $_POST['id'];
         <input type="text" id="telefoneIntMod" name="telefoneIntMod" style="display:none">
         <div class="row">
             <div class="col text-center">
-            <button class="btn btn-outline-success" type="submit">Salvar mudanças</button>
+                <button class="btn btn-outline-success" type="submit">Salvar mudanças</button> 
+                <p id='alert' style="color:red"></p>
             </div>
         </div>
         <br>
@@ -55,11 +56,11 @@ $id = $_POST['id'];
         document.getElementById('telefoneInt').value = JSON.stringify(arraytel);
         document.getElementById('enderecoIntMod').value = JSON.stringify(arrayend);
         document.getElementById('telefoneIntMod').value = JSON.stringify(arraytel);
-        document.getElementById('form').addEventListener('submit',function(e){
-            let idade=document.getElementById('idade').value;
-            if(idade<0 || idade>150){
+        document.getElementById('form').addEventListener('submit', function(e) {
+            let idade = document.getElementById('idade').value;
+            if (idade < 0 || idade > 150) {
                 e.preventDefault();
-                alert('A idade deve estar entre 0 e 150');
+                document.getElementById('alert').innerHTML='A idade deve estar entre 0 e 150';
             }
         });
         $('#adicionarEnd').click(function(e) {
@@ -148,27 +149,28 @@ $id = $_POST['id'];
                 id = "end" + id;
                 $('#' + id).remove();
                 document.getElementById('enderecoIntMod').value = JSON.stringify(arrModificado);
-            }
-            else if(arrModificado.includes(Number(id)) && arrOriginal.includes(Number(id))){
-                let tamanhoOriginal=0;
-                for(let i of arrOriginal){
+            } else if (arrModificado.includes(Number(id)) && arrOriginal.includes(Number(id))) {
+                let tamanhoOriginal = 0;
+                for (let i of arrOriginal) {
                     tamanhoOriginal++;
                 }
-                if(tamanhoOriginal>1){
-                    if(confirm('Deseja realmente excluir definitivamente este endereço?')){
-                        let endereco_selecionado=document.getElementById('idEndereco'+id).value;
+                if (tamanhoOriginal > 1) {
+                    if (confirm('Deseja realmente excluir definitivamente este endereço?')) {
+                        let endereco_selecionado = document.getElementById('idEndereco' + id).value;
                         $.ajax({
-                            url:"deletando_selecionados.php",
-                            type:"POST",
-                            data:{endereco_selecionado:endereco_selecionado},
-                            success:function(){
+                            url: "deletando_selecionados.php",
+                            type: "POST",
+                            data: {
+                                endereco_selecionado: endereco_selecionado
+                            },
+                            success: function() {
                                 arrModificado = arrModificado.filter(item => item != id);
                                 arrOriginal = arrOriginal.filter(item => item != id);
                                 id = "end" + id;
                                 $('#' + id).remove();
                                 document.getElementById('enderecoIntMod').value = JSON.stringify(arrModificado);
                                 document.getElementById('enderecoInt').value = JSON.stringify(arrOriginal);
-                            }   
+                            }
                         })
                     }
                 }
@@ -186,27 +188,28 @@ $id = $_POST['id'];
                 id = "tel" + id;
                 $('#' + id).remove();
                 document.getElementById('telefoneIntMod').value = JSON.stringify(arrModificado);
-            }
-            else if(arrModificado.includes(Number(id)) && arrOriginal.includes(Number(id))){
-                let tamanhoOriginal=0;
-                for(let i of arrOriginal){
+            } else if (arrModificado.includes(Number(id)) && arrOriginal.includes(Number(id))) {
+                let tamanhoOriginal = 0;
+                for (let i of arrOriginal) {
                     tamanhoOriginal++;
                 }
-                if(tamanhoOriginal>1){
-                    if(confirm('Deseja realmente excluir definitivamente este telefone?')){
-                        let telefone_selecionado=document.getElementById('idTelefone'+id).value;
+                if (tamanhoOriginal > 1) {
+                    if (confirm('Deseja realmente excluir definitivamente este telefone?')) {
+                        let telefone_selecionado = document.getElementById('idTelefone' + id).value;
                         $.ajax({
-                            url:"deletando_selecionados.php",
-                            type:"POST",
-                            data:{telefone_selecionado:telefone_selecionado},
-                            success:function(){
+                            url: "deletando_selecionados.php",
+                            type: "POST",
+                            data: {
+                                telefone_selecionado: telefone_selecionado
+                            },
+                            success: function() {
                                 arrModificado = arrModificado.filter(item => item != id);
                                 arrOriginal = arrOriginal.filter(item => item != id);
                                 id = "tel" + id;
                                 $('#' + id).remove();
                                 document.getElementById('telefoneIntMod').value = JSON.stringify(arrModificado);
                                 document.getElementById('telefoneInt').value = JSON.stringify(arrOriginal);
-                            }   
+                            }
                         })
                     }
                 }

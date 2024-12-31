@@ -56,7 +56,7 @@ imprime_cabecalho("Inserção");
                         </div>
                     </div>
                 </div>
-                <button style="border-width:1px; margin-top:0.5%; outline: none !important;" class="excluirEnd" id="excluirEnd1"><i class="bi bi-trash" ></i> </button>  <br>
+                <button style="border-width:1px; margin-top:0.5%; outline: none !important;" class="excluirEnd" id="excluirEnd1"><i class="bi bi-trash"></i> </button> <br>
             </div>
         </div>
         <div class="row">
@@ -93,7 +93,7 @@ imprime_cabecalho("Inserção");
                 </div>
                 <button style="border-width:1px; margin-top:0.5%;outline: none !important;" class="excluirTel" id="excluirTel1"><i class="bi bi-trash"></i></button> <br>
             </div>
-        </div> 
+        </div>
         <div class="row">
             <div class="col text-right">
                 <button style="border-width:1px; outline: none !important;" id="adicionarTel"><i class="bi bi-plus"></i></button>
@@ -105,6 +105,7 @@ imprime_cabecalho("Inserção");
         <div class="row">
             <div class="col text-center">
                 <button class="btn btn-outline-primary" type="submit">Enviar</button>
+                <p id='alert' style="color:red"></p>
             </div>
         </div>
         <br>
@@ -118,11 +119,11 @@ imprime_cabecalho("Inserção");
         let arraytel = [1];
         document.getElementById('enderecoInt').value = JSON.stringify(arrayend);
         document.getElementById('telefoneInt').value = JSON.stringify(arraytel);
-        document.getElementById('form').addEventListener('submit',function(e){
-            let idade=document.getElementById('idade').value;
-            if(idade<0 || idade>150){
+        document.getElementById('form').addEventListener('submit', function(e) {
+            let idade = document.getElementById('idade').value;
+            if (idade < 0 || idade > 150) {
                 e.preventDefault();
-                alert('A idade deve estar entre 0 e 150');
+                document.getElementById('alert').innerHTML='A idade deve estar entre 0 e 150';
             }
         });
         $('#adicionarEnd').click(function(e) {
@@ -165,8 +166,8 @@ imprime_cabecalho("Inserção");
             if (aux.length >= 2) {
                 let id = $(this).attr('id');
                 id = id.split('excluirEnd')[1];
-                aux=aux.filter(item=>item!=id);
-                id="end"+id;
+                aux = aux.filter(item => item != id);
+                id = "end" + id;
                 $('#' + id).remove();
                 document.getElementById('enderecoInt').value = JSON.stringify(aux);
             }
@@ -215,8 +216,8 @@ imprime_cabecalho("Inserção");
             if (aux.length >= 2) {
                 let id = $(this).attr('id');
                 id = id.split('excluirTel')[1];
-                aux=aux.filter(item=>item!=id);
-                id="tel"+id;
+                aux = aux.filter(item => item != id);
+                id = "tel" + id;
                 $('#' + id).remove();
                 document.getElementById('telefoneInt').value = JSON.stringify(aux);
             }
