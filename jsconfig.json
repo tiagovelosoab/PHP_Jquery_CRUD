@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": false
+    },
+    "include": [
+        "js/**/*.js",
+        "node_modules/jquery/dist/jquery.min.js"  // Se você estiver usando o jQuery via node_modules
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
